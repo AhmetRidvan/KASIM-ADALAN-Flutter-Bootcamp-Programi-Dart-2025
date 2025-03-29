@@ -1,10 +1,10 @@
-class Urunler {
+class UrunModel {
   int id;
   String ad;
   String resim;
   int fiyat;
 
-  Urunler({
+  UrunModel({
     required this.id,
     required this.ad,
     required this.resim,

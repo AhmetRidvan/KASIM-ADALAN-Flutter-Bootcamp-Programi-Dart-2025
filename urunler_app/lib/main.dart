@@ -3,7 +3,8 @@ import 'package:urunler_app/ui/views/anasayfa.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget { //9:55
+class MyApp extends StatelessWidget { 
+  
   const MyApp({super.key});
 
   @override

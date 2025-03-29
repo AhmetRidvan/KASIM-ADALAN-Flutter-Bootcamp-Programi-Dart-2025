@@ -1,0 +1,43 @@
+spaceBetween aralarında eşit boşluk ama kenarlar 0
+spaceAround Aralarında eşit ama kenar boşlukları yarısı
+spaceEvently hepsi eşit
+
+import 'package:flutter/material.dart';
+
+class DetaySayfa extends StatefulWidget {
+  DetaySayfa({super.key});
+
+  @override
+  State<DetaySayfa> createState() {
+    return _Anasayfa();
+  }
+}
+
+class _Anasayfa extends State<DetaySayfa> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(width: 50, height: 50, color: Colors.red),
+            Container(width: 50, height: 50, color: Colors.green),
+            Container(width: 50, height: 50, color: Colors.blue),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: DetaySayfa());
+  }
+}
