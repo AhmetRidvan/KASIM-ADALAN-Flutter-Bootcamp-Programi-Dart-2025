@@ -3,7 +3,6 @@ import 'package:kisiler_app/data/entity/kisiler.dart';
 import 'package:kisiler_app/ui/views/detay_sayfa.dart';
 import 'package:kisiler_app/ui/views/kayit_sayfa.dart';
 
-
 class Anasayfa extends StatefulWidget {
   const Anasayfa({super.key});
   @override
@@ -19,9 +18,9 @@ class _AnasayfaState extends State<Anasayfa> {
 
   Future<List<Kisiler>> kisileriYukle() async {
     var kisilerListesi = <Kisiler>[];
-    var k1 = Kisiler(kisiId: 1,kisiAd: 'Zeynep',kisiTel: '05416288099');
-    var k2 = Kisiler(kisiId:2,kisiAd: 'Aleyna',kisiTel: '0547895756');
-    var k3 = Kisiler(kisiId: 3,kisiAd: 'Mahmut',kisiTel: '0985695756');
+    var k1 = Kisiler(kisiId: 1, kisiAd: 'Zeynep', kisiTel: '05416288099');
+    var k2 = Kisiler(kisiId: 2, kisiAd: 'Aleyna', kisiTel: '0547895756');
+    var k3 = Kisiler(kisiId: 3, kisiAd: 'Mahmut', kisiTel: '0985695756');
     kisilerListesi.add(k1);
     kisilerListesi.add(k2);
     kisilerListesi.add(k3);
@@ -36,72 +35,95 @@ class _AnasayfaState extends State<Anasayfa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: aramaYapiliyorMu ?
-        TextField(
-          decoration: const InputDecoration(hintText: "Ara"),
-          onChanged: (aramSonucu){
-            ara(aramSonucu);
-          },
-        ) :
-        const Text("Kişiler"),
+        title:
+            aramaYapiliyorMu
+                ? TextField(
+                  decoration: const InputDecoration(hintText: "Ara"),
+                  onChanged: (aramSonucu) {
+                    ara(aramSonucu);
+                  },
+                )
+                : const Text("Kişiler"),
         actions: [
-          aramaYapiliyorMu ?
-          IconButton(onPressed: (){
-            setState(() {
-              aramaYapiliyorMu = false;
-            });
-          }, icon: const Icon(Icons.clear)) :
-          IconButton(onPressed: (){
-            setState(() {
-              aramaYapiliyorMu = true;
-            });
-          }, icon: const Icon(Icons.search))
+          aramaYapiliyorMu
+              ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    aramaYapiliyorMu = false;
+                  });
+                },
+                icon: const Icon(Icons.clear),
+              )
+              : IconButton(
+                onPressed: () {
+                  setState(() {
+                    aramaYapiliyorMu = true;
+                  });
+                },
+                icon: const Icon(Icons.search),
+              ),
         ],
       ),
       body: FutureBuilder<List<Kisiler>>(
         future: kisileriYukle(),
-        builder: (context,snapshot){
-          if(snapshot.hasData){
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
             var kisilerListesi = snapshot.data;
             return ListView.builder(
-              itemCount: kisilerListesi!.length,//3
-              itemBuilder: (context,indeks){//0,1,2
+              itemCount: kisilerListesi!.length, //3
+              itemBuilder: (context, indeks) {
+                //0,1,2
                 var kisi = kisilerListesi[indeks];
                 return GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  DetaySayfa(kisi: kisi)))
-                        .then((value) {
-                      print("Anasayfaya dönüldü");
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetaySayfa(kisi: kisi),
+                      ),
+                    ).then((value) {
+                     
                     });
                   },
                   child: Card(
-                    child: SizedBox(height: 100,
+                    child: SizedBox(
+                      height: 100,
                       child: Row(
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(kisi.kisiAd,style: const TextStyle(fontSize: 20),),
+                                Text(
+                                  kisi.kisiAd,
+                                  style: const TextStyle(fontSize: 20),
+                                ),
                                 Text(kisi.kisiTel),
                               ],
                             ),
                           ),
                           const Spacer(),
-                          IconButton(onPressed: (){
-                            ScaffoldMessenger.of(context).showSnackBar(
+                          IconButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                    content: Text("${kisi.kisiAd} silinsin mi?"),
-                                    action: SnackBarAction(
-                                      label: "Evet",
-                                      onPressed: (){
-                                        sil(kisi.kisiId);
-                                      },
-                                    ),
-                                )
-                            );
-                          }, icon: const Icon(Icons.clear,color: Colors.black54,),)
+                                  content: Text("${kisi.kisiAd} silinsin mi?"),
+                                  action: SnackBarAction(
+                                    label: "Evet",
+                                    onPressed: () {
+                                      sil(kisi.kisiId);
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.clear,
+                              color: Colors.black54,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -109,15 +131,17 @@ class _AnasayfaState extends State<Anasayfa> {
                 );
               },
             );
-          }else{
+          } else {
             return const Center();
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const KayitSayfa()))
-              .then((value) {
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const KayitSayfa()),
+          ).then((value) {
             print("Anasayfaya dönüldü");
           });
         },
