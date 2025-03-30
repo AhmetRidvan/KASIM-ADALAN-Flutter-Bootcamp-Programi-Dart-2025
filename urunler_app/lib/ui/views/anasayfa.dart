@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:urunler_app/data/entity/urunler.dart';
+import 'package:urunler_app/ui/views/detay_sayfa.dart';
 
 class Anasayfa extends StatefulWidget {
   Anasayfa({super.key});
@@ -84,40 +85,58 @@ class _Anasayfa extends State<Anasayfa> {
               itemCount: urunlerListesi!.length,
               itemBuilder: (context, index) {
                 var urun = urunlerListesi[index];
-                return Card(
-                  margin: EdgeInsets.only(top: 0, bottom: 5),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(33),
-                          child: Image.asset(
-                            height: 130,
-                            width: 130,
-                            'images/${urun.resim}',
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(urun.ad),
-                          SizedBox(height: 10),
-                          Text(
-                            '${urun.fiyat} ₺',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(height: 10),
-                          ElevatedButton(
-                            onPressed: () {
-                              print('${urun.ad} eklendi');
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                    top: 5,
+                    bottom: 5,
+                  ),
+                  child: Card(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return DetaySayfa(urunModel: urun);
                             },
-                            child: Text('Sepete ekle'),
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(33),
+                              child: Image.asset(
+                                height: 130,
+                                width: 130,
+                                'images/${urun.resim}',
+                              ),
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(urun.ad),
+                              SizedBox(height: 10),
+                              Text(
+                                '${urun.fiyat} ₺',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                              SizedBox(height: 10),
+                              ElevatedButton(
+                                onPressed: () {
+                                  print('${urun.ad} eklendi');
+                                },
+                                child: Text('Sepete ekle'),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
                 );
               },
