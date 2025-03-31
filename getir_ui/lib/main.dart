@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
+    
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(color: Color(0xff2b17e3)),
