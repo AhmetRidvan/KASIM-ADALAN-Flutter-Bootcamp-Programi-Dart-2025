@@ -16,16 +16,7 @@ class _AnasayfaState extends State<Anasayfa> {
     print("Kişi Ara : $aramaKelimesi");
   }
 
-  Future<List<Kisiler>> kisileriYukle() async {
-    var kisilerListesi = <Kisiler>[];
-    var k1 = Kisiler(kisiId: 1, kisiAd: 'Zeynep', kisiTel: '05416288099');
-    var k2 = Kisiler(kisiId: 2, kisiAd: 'Aleyna', kisiTel: '0547895756');
-    var k3 = Kisiler(kisiId: 3, kisiAd: 'Mahmut', kisiTel: '0985695756');
-    kisilerListesi.add(k1);
-    kisilerListesi.add(k2);
-    kisilerListesi.add(k3);
-    return kisilerListesi;
-  }
+ 
 
   Future<void> sil(int kisi_id) async {
     print("Kişi Sil : $kisi_id");
@@ -75,7 +66,7 @@ class _AnasayfaState extends State<Anasayfa> {
                 //0,1,2
                 var kisi = kisilerListesi[indeks];
                 return GestureDetector(
-                  onTap: () {
+                  onTap: () {  
                     Navigator.push(
                       context,
                       MaterialPageRoute(

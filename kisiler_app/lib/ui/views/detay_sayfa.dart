@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kisiler_app/data/entity/kisiler.dart';
+import 'package:kisiler_app/ui/views/cubits/detaysayfa_cubit.dart';
 
 class DetaySayfa extends StatefulWidget {
   Kisiler kisi;
@@ -13,10 +15,6 @@ class _DetaySayfaState extends State<DetaySayfa> {
   var tfKisiAdi = TextEditingController();
   var tfKisiTel = TextEditingController();
 
-  Future<void> guncelle(int kisi_id,String kisi_ad,String kisi_tel) async {
-    print("Kişi Güncelle : $kisi_id - $kisi_ad - $kisi_tel");
-  }
-
   @override
   void initState() {
     super.initState();
@@ -28,17 +26,31 @@ class _DetaySayfaState extends State<DetaySayfa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Detay Sayfa"),),
+      appBar: AppBar(title: const Text("Detay Sayfa")),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(left: 50,right: 50),
-          child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          padding: const EdgeInsets.only(left: 50, right: 50),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              TextField(controller: tfKisiAdi,decoration: const InputDecoration(hintText: "Kişi Ad"),),
-              TextField(controller: tfKisiTel,decoration: const InputDecoration(hintText: "Kişi Tel"),),
-              ElevatedButton(onPressed: (){
-                guncelle(widget.kisi.kisiId, tfKisiAdi.text, tfKisiTel.text);
-              }, child: const Text("GÜNCELLE"))
+              TextField(
+                controller: tfKisiAdi,
+                decoration: const InputDecoration(hintText: "Kişi Ad"),
+              ),
+              TextField(
+                controller: tfKisiTel,
+                decoration: const InputDecoration(hintText: "Kişi Tel"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  context.read<DetaysayfaCubit>().update(
+                    widget.kisi.kisiId,
+                    tfKisiAdi.text,
+                    tfKisiTel.text,
+                  );
+                },
+                child: const Text("GÜNCELLE"),
+              ),
             ],
           ),
         ),

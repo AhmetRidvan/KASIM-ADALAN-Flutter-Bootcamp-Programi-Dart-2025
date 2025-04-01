@@ -5,32 +5,20 @@ class AnasayfaCubit extends Cubit<int> {
   AnasayfaCubit() : super(0);
 
   var mrepo = MatematikReporistory();
-  //37:15
+
   void toplamaYap(String alinanSayi1, String alinanSayi2) {
-    int sayi1 = int.parse(alinanSayi1);
-    int sayi2 = int.parse(alinanSayi2);
-    int sonuc = sayi1 + sayi2;
-    emit(sonuc); // tetikleme gönderme
+    emit(mrepo.toplamaYap(alinanSayi1, alinanSayi2)); // tetikleme gönderme
   }
 
   void cikarmaYap(String alinanSayi1, String alinanSayi2) {
-    int sayi1 = int.parse(alinanSayi1);
-    int sayi2 = int.parse(alinanSayi2);
-    int sonuc = sayi1 - sayi2;
-    emit(sonuc); // tetikleme gönderme
+    emit(mrepo.cikarmaYap(alinanSayi1, alinanSayi2)); // tetikleme gönderme
   }
 
   void carpmaYap(String alinanSayi1, String alinanSayi2) {
-    int sayi1 = int.parse(alinanSayi1);
-    int sayi2 = int.parse(alinanSayi2);
-    int sonuc = sayi1 * sayi2;
-    emit(sonuc); // tetikleme gönderme
+    emit(mrepo.carpmaYap(alinanSayi1, alinanSayi2));
   }
 
   void bolmeYap(String alinanSayi1, String alinanSayi2) {
-    int sayi1 = int.parse(alinanSayi1);
-    int sayi2 = int.parse(alinanSayi2);
-    int sonuc = (sayi1 / sayi2).toInt();
-    emit(sonuc); // tetikleme gönderme
+    emit(mrepo.bolmeYap(alinanSayi1, alinanSayi2));
   }
 }
