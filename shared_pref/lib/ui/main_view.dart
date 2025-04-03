@@ -18,10 +18,14 @@ class _mainView extends State<MainView> {
     sayac();
     super.initState();
   }
-
+ 
   Future<void> sayac() async {
     var sp = await SharedPreferences.getInstance();
     sayi = sp.getInt('sayac') ?? 0;
+    setState(() {
+      sayi++;
+    });
+    sp.setInt('sayac', sayi);
   }
 
   Future<void> test() async {
@@ -59,7 +63,7 @@ class _mainView extends State<MainView> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text('Açılış sayıfı', style: TextStyle(fontSize: 50))],
+          children: [Text('Sayı $sayi', style: TextStyle(fontSize: 50))],
         ),
       ),
     );
