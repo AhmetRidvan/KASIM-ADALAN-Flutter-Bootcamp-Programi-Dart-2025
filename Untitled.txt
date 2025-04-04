@@ -1,0 +1,18 @@
+-- INSERT  INTO urunler(urun_adi,urun_fiyati) VALUES ('Asus',33) bir tabloya veri ekleme
+-- UPDATE urunler SET urun_fiyati = '2000' WHERE urun_id = 13 güncelleme
+-- DELETE FROM urunler where urun_id = 0 silme
+-- SELECT * FROM urunler veya SELECT urun_id FROM urunler Getir 
+-- SELECT count() as asdasd FROM urunler satır sayma
+-- SELECT * FROM urunler ORDER BY urun_adi sıralama
+-- SELECT * FROM urunler where urun_adi like '%sus%'  filtereleme
+-- SELECT * FROM urunler WHERE urun_adi like '%a%' LIMIT 1 limitleme
+--SELECT * FROM urunler ORDER BY random() karıştırmak için
+--SELECT * FROM siparisler,urunler,musteriler
+--SELECT  urun_adi,musteri_adi,siparis_adeti,urun_fiyati FROM siparisler,urunler,musteriler WHERE urunler.urun_id = siparisler.urun_id  AND musteriler.musteri_id = siparisler.siparis_id foreignkey'leri tanıtma
+
+SELECT * FROM siparisler,urunler,musteriler
+
+-- SELECT * FROM urunler WHERE urun_fiyati > 5 AND urun_fiyati < 5000
+-- SELECT * FROM urunler WHERE urun_adi = 'Asus'
+
+
