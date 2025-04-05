@@ -1,2 +1,0 @@
-E:/Kasim-Adalan-Flutter-Bootcamp-2025/filmler_app/android/app/.cxx/Debug/6o3b3k4f/armeabi-v7a/CMakeFiles/edit_cache.dir
-E:/Kasim-Adalan-Flutter-Bootcamp-2025/filmler_app/android/app/.cxx/Debug/6o3b3k4f/armeabi-v7a/CMakeFiles/rebuild_cache.dir
