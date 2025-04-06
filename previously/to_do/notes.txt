@@ -1,0 +1,3 @@
+emit arayüz güncelliyor.
+   context.read fonksyion tetikliyor
+   emit Yalnızca Kendi Cubit'ini Günceller
