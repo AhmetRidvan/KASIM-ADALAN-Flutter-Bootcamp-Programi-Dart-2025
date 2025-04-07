@@ -1,0 +1,3 @@
+const derleme zamanı 
+final çalışma zamanı
+static direk sınıf adıyla özelliklere erişimi sağlar.

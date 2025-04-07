@@ -1,2 +1,0 @@
-const derleme zamanı 
-final çalışma zamanı
