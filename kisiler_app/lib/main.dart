@@ -5,7 +5,7 @@ import 'package:kisiler_app/ui/views/cubits/anasayfa_cubit.dart';
 import 'package:kisiler_app/ui/views/cubits/detaysayfa_cubit.dart';
 import 'package:kisiler_app/ui/views/cubits/kayitsayfa_cubit.dart';
 
-void main() => runApp(const MyApp()); //16:32
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
