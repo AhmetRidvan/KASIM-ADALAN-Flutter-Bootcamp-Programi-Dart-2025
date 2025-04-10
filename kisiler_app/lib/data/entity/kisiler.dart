@@ -1,20 +1,7 @@
 class Kisiler {
-  String kisi_id;
-  String kisi_ad;
-  String kisi_tel;
+  int kisiId;
+  String kisiAd;
+  String kisiTel;
 
-  Kisiler({
-    required this.kisi_id,
-    required this.kisi_ad,
-    required this.kisi_tel,
-  });
-
-  factory Kisiler.fromJson(Map<String, dynamic> json) {
-    return Kisiler(
-      kisi_id: json['kisi_id'],
-      kisi_ad: json['kisi_ad'],
-      kisi_tel: json['kisi_tel'],
-    );
-  }
+  Kisiler({required this.kisiId,required this.kisiAd,required this.kisiTel});
 }
-

@@ -19,8 +19,8 @@ class _DetaySayfaState extends State<DetaySayfa> {
   void initState() {
     super.initState();
     var kisi = widget.kisi;
-    tfKisiAdi.text = kisi.kisi_ad;
-    tfKisiTel.text = kisi.kisi_tel;
+    tfKisiAdi.text = kisi.kisiAd;
+    tfKisiTel.text = kisi.kisiTel;
   }
 
   @override
@@ -44,7 +44,7 @@ class _DetaySayfaState extends State<DetaySayfa> {
               ElevatedButton(
                 onPressed: () {
                   context.read<DetaysayfaCubit>().update(
-                   int.parse( widget.kisi.kisi_id ),
+                    widget.kisi.kisiId,
                     tfKisiAdi.text,
                     tfKisiTel.text,
                   );

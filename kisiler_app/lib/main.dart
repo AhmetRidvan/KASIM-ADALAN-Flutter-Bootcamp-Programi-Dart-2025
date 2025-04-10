@@ -5,13 +5,13 @@ import 'package:kisiler_app/ui/views/cubits/anasayfa_cubit.dart';
 import 'package:kisiler_app/ui/views/cubits/detaysayfa_cubit.dart';
 import 'package:kisiler_app/ui/views/cubits/kayitsayfa_cubit.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const MyApp()); //16:32
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           },
         ),
       ],
-      child: MaterialApp(home: Anasayfa()), // 39:11
+      child: MaterialApp(home: Anasayfa()),
     );
   }
 }

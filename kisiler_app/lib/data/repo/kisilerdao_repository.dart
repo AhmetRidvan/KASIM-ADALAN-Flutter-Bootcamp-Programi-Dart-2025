@@ -1,46 +1,35 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
 import 'package:kisiler_app/data/entity/kisiler.dart';
-import 'package:kisiler_app/data/entity/kisiler_cevap.dart';
 
 class KisilerdaoRepository {
-  List<Kisiler> parsedKisiler(String url) {
-    return KisilerCevap.fromJson(jsonDecode(url)).kisiler;
-  }
-
   Future<void> save(String kisi_ad, String kisi_tel) async {
-    var url = 'http://kasimadalan.pe.hu/kisiler/insert_kisiler.php';
-    var map = {"kisi_ad": kisi_ad, "kisi_tel": kisi_tel};
-    var cevap = await Dio().post(url, data: FormData.fromMap(map));
-    print(cevap.toString());
+    print("Kişi Kaydet : $kisi_ad - $kisi_tel");
   }
 
   Future<void> update(int kisi_id, String kisi_ad, String kisi_tel) async {
-    final url = 'http://kasimadalan.pe.hu/kisiler/update_kisiler.php';
-    final map = {'kisi_id': kisi_id, 'kisi_ad': kisi_ad, 'kisi_tel': kisi_tel};
-    final cevap = await Dio().post(url, data: FormData.fromMap(map));
-    print(cevap);
+    print("Kişi Güncelle : $kisi_id - $kisi_ad - $kisi_tel");
   }
 
   Future<List<Kisiler>> getPeople() async {
-    var url = 'http://kasimadalan.pe.hu/kisiler/tum_kisiler.php';
-    var response = await Dio().get(url);
-    return parsedKisiler(response.data);
+    var kisilerListesi = <Kisiler>[];
+    var k1 = Kisiler(kisiId: 1, kisiAd: 'Zeynep', kisiTel: '05416288099');
+    var k2 = Kisiler(kisiId: 2, kisiAd: 'Aleyna', kisiTel: '0547895756');
+    var k3 = Kisiler(kisiId: 3, kisiAd: 'Mahmut', kisiTel: '0985695756');
+    kisilerListesi.add(k1);
+
+    kisilerListesi.add(k2);
+    kisilerListesi.add(k3);
+    return kisilerListesi;
   }
 
   Future<void> delete(int kisi_id) async {
-    var url = 'http://kasimadalan.pe.hu/kisiler/delete_kisiler.php';
-    var map = {"kisi_id": kisi_id};
-    var cevap = await Dio().post(url, data: FormData.fromMap(map));
-    print(cevap);
+    print("Kişi Sil : $kisi_id");
   }
 
   Future<List<Kisiler>> call(String name) async {
-    var url = 'http://kasimadalan.pe.hu/kisiler/tum_kisiler_arama.php';
-    var map = {"kisi_ad": name};
-    var cevap = await Dio().post(url, data: FormData.fromMap(map));
-    print(cevap.data);
-    return parsedKisiler(cevap.data);
+    var kisilerListesi = <Kisiler>[];
+    var k1 = Kisiler(kisiId: 1, kisiAd: 'Zeynep', kisiTel: '05416288099');
+
+    kisilerListesi.add(k1);
+    return kisilerListesi;
   }
 }

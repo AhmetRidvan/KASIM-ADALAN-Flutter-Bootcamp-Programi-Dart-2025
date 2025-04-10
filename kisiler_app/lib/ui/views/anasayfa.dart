@@ -85,10 +85,10 @@ class _AnasayfaState extends State<Anasayfa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  kisi.kisi_ad,
+                                  kisi.kisiAd,
                                   style: const TextStyle(fontSize: 20),
                                 ),
-                                Text(kisi.kisi_tel),
+                                Text(kisi.kisiTel),
                               ],
                             ),
                           ),
@@ -97,12 +97,12 @@ class _AnasayfaState extends State<Anasayfa> {
                             onPressed: () {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text("${kisi.kisi_ad} silinsin mi?"),
+                                  content: Text("${kisi.kisiAd} silinsin mi?"),
                                   action: SnackBarAction(
                                     label: "Evet",
                                     onPressed: () {
                                       context.read<AnasayfaCubit>().delete(
-                                        int.parse(kisi.kisi_id),
+                                        kisi.kisiId,
                                       );
                                     },
                                   ),
