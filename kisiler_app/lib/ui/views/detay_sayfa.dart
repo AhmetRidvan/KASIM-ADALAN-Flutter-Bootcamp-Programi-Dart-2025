@@ -4,7 +4,7 @@ import 'package:kisiler_app/data/entity/kisiler.dart';
 import 'package:kisiler_app/ui/views/cubits/detaysayfa_cubit.dart';
 
 class DetaySayfa extends StatefulWidget {
-  Kisiler kisi;
+  KisilerModel kisi;
   DetaySayfa({required this.kisi});
 
   @override
@@ -19,8 +19,8 @@ class _DetaySayfaState extends State<DetaySayfa> {
   void initState() {
     super.initState();
     var kisi = widget.kisi;
-    tfKisiAdi.text = kisi.kisiAd;
-    tfKisiTel.text = kisi.kisiTel;
+    tfKisiAdi.text = kisi.kisi_ad;
+    tfKisiTel.text = kisi.kisi_tel;
   }
 
   @override
@@ -44,7 +44,7 @@ class _DetaySayfaState extends State<DetaySayfa> {
               ElevatedButton(
                 onPressed: () {
                   context.read<DetaysayfaCubit>().update(
-                    widget.kisi.kisiId,
+                    widget.kisi.kisi_id,
                     tfKisiAdi.text,
                     tfKisiTel.text,
                   );

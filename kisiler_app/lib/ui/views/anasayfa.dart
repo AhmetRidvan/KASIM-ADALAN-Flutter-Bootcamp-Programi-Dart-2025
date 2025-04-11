@@ -54,7 +54,7 @@ class _AnasayfaState extends State<Anasayfa> {
               ),
         ],
       ),
-      body: BlocBuilder<AnasayfaCubit, List<Kisiler>>(
+      body: BlocBuilder<AnasayfaCubit, List<KisilerModel>>(
         builder: (context, kisilerListesi) {
           if (kisilerListesi.isNotEmpty) {
             return ListView.builder(
@@ -85,10 +85,10 @@ class _AnasayfaState extends State<Anasayfa> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  kisi.kisiAd,
+                                  kisi.kisi_ad,
                                   style: const TextStyle(fontSize: 20),
                                 ),
-                                Text(kisi.kisiTel),
+                                Text(kisi.kisi_tel),
                               ],
                             ),
                           ),
@@ -97,12 +97,12 @@ class _AnasayfaState extends State<Anasayfa> {
                             onPressed: () {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  content: Text("${kisi.kisiAd} silinsin mi?"),
+                                  content: Text("${kisi.kisi_ad} silinsin mi?"),
                                   action: SnackBarAction(
                                     label: "Evet",
                                     onPressed: () {
                                       context.read<AnasayfaCubit>().delete(
-                                        kisi.kisiId,
+                                        kisi.kisi_id,
                                       );
                                     },
                                   ),

@@ -6,7 +6,7 @@ class DetaysayfaCubit extends Cubit<void> {
 
   KisilerdaoRepository k1 = KisilerdaoRepository();
 
-  Future<void> update(int kisi_id, String kisi_ad, String kisi_tel) async {
+  Future<void> update(String kisi_id, String kisi_ad, String kisi_tel) async {
     await k1.update(kisi_id, kisi_ad, kisi_tel);
   }
 }

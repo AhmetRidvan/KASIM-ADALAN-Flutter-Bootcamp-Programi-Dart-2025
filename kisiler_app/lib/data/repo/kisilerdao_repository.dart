@@ -1,35 +1,26 @@
+import 'dart:collection';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:kisiler_app/data/entity/kisiler.dart';
 
 class KisilerdaoRepository {
+  var collection = FirebaseFirestore.instance.collection('Kisiler');
+
   Future<void> save(String kisi_ad, String kisi_tel) async {
-    print("Kişi Kaydet : $kisi_ad - $kisi_tel");
+    final x = HashMap<String, dynamic>.from({
+      'kisi_id': '',
+      'kisi_ad': kisi_ad,
+      'kisi_tel': kisi_tel,
+    });
+    collection.add(x);
   }
 
-  Future<void> update(int kisi_id, String kisi_ad, String kisi_tel) async {
+  Future<void> update(String kisi_id, String kisi_ad, String kisi_tel) async {
     print("Kişi Güncelle : $kisi_id - $kisi_ad - $kisi_tel");
   }
 
-  Future<List<Kisiler>> getPeople() async {
-    var kisilerListesi = <Kisiler>[];
-    var k1 = Kisiler(kisiId: 1, kisiAd: 'Zeynep', kisiTel: '05416288099');
-    var k2 = Kisiler(kisiId: 2, kisiAd: 'Aleyna', kisiTel: '0547895756');
-    var k3 = Kisiler(kisiId: 3, kisiAd: 'Mahmut', kisiTel: '0985695756');
-    kisilerListesi.add(k1);
-
-    kisilerListesi.add(k2);
-    kisilerListesi.add(k3);
-    return kisilerListesi;
-  }
-
-  Future<void> delete(int kisi_id) async {
+  Future<void> delete(String kisi_id) async {
     print("Kişi Sil : $kisi_id");
-  }
-
-  Future<List<Kisiler>> call(String name) async {
-    var kisilerListesi = <Kisiler>[];
-    var k1 = Kisiler(kisiId: 1, kisiAd: 'Zeynep', kisiTel: '05416288099');
-
-    kisilerListesi.add(k1);
-    return kisilerListesi;
   }
 }
