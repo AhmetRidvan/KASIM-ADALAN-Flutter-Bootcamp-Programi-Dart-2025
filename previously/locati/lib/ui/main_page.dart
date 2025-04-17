@@ -13,11 +13,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPage extends State<MainPage> {
-  Completer<GoogleMapController> mapController = Completer();
-  final start = CameraPosition(target: LatLng(36.6240379, 100.5813737),zoom: 4.75);
-  final go = CameraPosition(target: LatLng(36.6240379, 100.5813737),zoom: 4.75);
-
-
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
