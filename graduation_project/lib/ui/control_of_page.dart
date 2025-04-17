@@ -1,6 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/ui/account_page.dart';
+
 import 'package:graduation_project/ui/basket_page.dart';
 import 'package:graduation_project/ui/favorite_page.dart';
 import 'package:graduation_project/ui/main_page.dart';
@@ -15,17 +15,8 @@ class ControlOfPage extends StatefulWidget {
 }
 
 class ControlOfPageState extends State<ControlOfPage> {
-  List<IconData> icons = [
-    Icons.home,
-    Icons.favorite,
-    Icons.account_circle_rounded,
-  ];
-  List<Widget> pages = [
-    MainPage(),
-    FavoritePage(),
-    AccountPage(),
-    BasketPage(),
-  ];
+  List<IconData> icons = [Icons.home, Icons.favorite];
+  List<Widget> pages = [MainPage(), FavoritePage(), BasketPage()];
   int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -35,7 +26,7 @@ class ControlOfPageState extends State<ControlOfPage> {
         backgroundColor: Colors.pinkAccent,
         onPressed: () {
           setState(() {
-            pageIndex = 3;
+            pageIndex = 2;
           });
         },
         child: Icon(Icons.shopping_basket_sharp, color: Colors.white),
