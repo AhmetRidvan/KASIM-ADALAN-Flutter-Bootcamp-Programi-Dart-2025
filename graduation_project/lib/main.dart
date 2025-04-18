@@ -1,15 +1,12 @@
-
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/firebase_options.dart';
-import 'package:graduation_project/ui/control_of_page.dart';
-import 'package:graduation_project/ui/log_in_sign_up.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:graduation_project/control_of_page.dart';
+import 'package:graduation_project/cubit/main_page_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
   runApp(MyApp());
 }
 
@@ -18,9 +15,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LogInSignUpPage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) {
+            return MainPageCubit();
+          },
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: ControlOfPage(),
+      ),
     );
   }
 }
