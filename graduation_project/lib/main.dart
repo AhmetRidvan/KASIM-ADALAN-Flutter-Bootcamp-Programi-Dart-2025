@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:graduation_project/control_of_page.dart';
+import 'package:graduation_project/cubit/basket_page_cubit.dart';
+
+import 'package:graduation_project/cubit/detail_page_cubit.dart';
 import 'package:graduation_project/cubit/main_page_cubit.dart';
 
 void main() async {
@@ -22,6 +25,16 @@ class MyApp extends StatelessWidget {
             return MainPageCubit();
           },
         ),
+        BlocProvider(
+          create: (context) {
+            return DetailPageCubit();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return BasketPageCubit();
+          },
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -30,7 +43,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+// 11:56
 // http://kasimadalan.pe.hu/yemekler/tumYemekleriGetir.php   use get filmler uygulamasına bakabilirsin
 
 //http://kasimadalan.pe.hu/yemekler/sepeteYemekEkle.php post ile Kisiler uygulamasındaki insert ile yapabilirsiniz
