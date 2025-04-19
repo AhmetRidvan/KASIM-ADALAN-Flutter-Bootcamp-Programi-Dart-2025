@@ -40,7 +40,7 @@ class _DetailPageState extends State<DetailPage> {
                     .addBasket(
                       widget.f1.yemek_adi,
                       widget.f1.yemek_resim_adi,
-                      int.parse(widget.f1.yemek_fiyat),
+                      toplam,
                       adet,
                       "realme",
                     )

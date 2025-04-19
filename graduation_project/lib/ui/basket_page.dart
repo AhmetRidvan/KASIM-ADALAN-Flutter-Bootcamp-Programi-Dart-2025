@@ -29,7 +29,36 @@ class _BasketPageState extends State<BasketPage> {
           return ListView.builder(
             itemCount: state.length,
             itemBuilder: (context, index) {
-              return Card(child: Text(state[0].kullanici_adi));
+              final items = state[index];
+              return Card(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.network(
+                      width: 150,
+                      'http://kasimadalan.pe.hu/yemekler/resimler/${items.yemek_resim_adi}',
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
+                        Text(
+                          "${(int.parse(items.yemek_fiyat) / int.parse(items.yemek_siparis_adet)).toInt()} ₺",
+                        ),
+                        Text(
+                          items.yemek_adi,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text("${items.yemek_fiyat} ₺"),
+                        Text("${items.yemek_siparis_adet} adet"),
+                      ],
+                    ),
+                  ],
+                ),
+              );
             },
           );
         } else {
