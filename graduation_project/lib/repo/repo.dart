@@ -33,7 +33,6 @@ class Repo {
       "http://kasimadalan.pe.hu/yemekler/sepeteYemekEkle.php",
       data: FormData.fromMap(map),
     );
-    print(x.data);
   }
 
   Future<List<BasketItemModel>> getBasketItems(String kullanici_adi) async {
@@ -42,7 +41,28 @@ class Repo {
       'http://kasimadalan.pe.hu/yemekler/sepettekiYemekleriGetir.php',
       data: FormData.fromMap(map),
     );
-    print('selaaam ${x.data}');
+
+
+     if (x.data == null || x.data.toString().isEmpty) {
+    print("Boş veya geçersiz veri döndü");
+    return []; // Boş bir liste döndür
+  }
+
+  try {
+    // JSON'u parse et
     return BasketModel.fromJson(jsonDecode(x.data)).list;
+  } catch (e) {
+    print("JSON parse hatası: $e");
+    return []; // Hata durumunda boş bir liste döndür
+  }
+  }
+
+  Future<void> delete(int yemekId, String kullaniciAdi) async {
+    final url = "http://kasimadalan.pe.hu/yemekler/sepettenYemekSil.php";
+    Map<String, dynamic> map = {
+      'sepet_yemek_id': yemekId,
+      'kullanici_adi': kullaniciAdi,
+    };
+    final x = await Dio().post(url, data: FormData.fromMap(map));
   }
 }

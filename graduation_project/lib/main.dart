@@ -5,6 +5,7 @@ import 'package:graduation_project/control_of_page.dart';
 import 'package:graduation_project/cubit/basket_page_cubit.dart';
 
 import 'package:graduation_project/cubit/detail_page_cubit.dart';
+import 'package:graduation_project/cubit/favorites_page_cubit.dart';
 import 'package:graduation_project/cubit/main_page_cubit.dart';
 
 void main() async {
@@ -13,13 +14,18 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { //
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+         BlocProvider(
+          create: (context) {
+            return FavoritesPageCubit();
+          },
+        ),
         BlocProvider(
           create: (context) {
             return MainPageCubit();

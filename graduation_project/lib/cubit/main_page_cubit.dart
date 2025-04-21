@@ -8,7 +8,8 @@ class MainPageCubit extends Cubit<List<FoodModel>> {
 
   final r1 = Repo();
 
-  Future<void> getFoods() async {
+  Future<List<FoodModel>> getFoods() async {
     emit(await r1.getfoods());
+    return await r1.getfoods();
   }
 }

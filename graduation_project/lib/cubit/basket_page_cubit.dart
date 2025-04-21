@@ -10,4 +10,9 @@ class BasketPageCubit extends Cubit<List<BasketItemModel>> {
   Future<void> getBasketItems(String kullaniciAdi) async {
     emit(await r1.getBasketItems(kullaniciAdi));
   }
+
+  Future<void> deleteItem(int yemekId, String kullaniciAdi) async {
+    await r1.delete(yemekId, kullaniciAdi);
+    getBasketItems(kullaniciAdi);
+  }
 }

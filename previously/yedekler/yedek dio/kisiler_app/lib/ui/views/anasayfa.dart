@@ -98,7 +98,7 @@ class _AnasayfaState extends State<Anasayfa> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text("${kisi.kisi_ad} silinsin mi?"),
-                                  action: SnackBarAction(
+                                  action: SnackBarAction(ı
                                     label: "Evet",
                                     onPressed: () {
                                       context.read<AnasayfaCubit>().delete(
