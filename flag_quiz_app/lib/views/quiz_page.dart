@@ -1,3 +1,7 @@
+import 'dart:collection';
+
+import 'package:flag_quiz_app/flag_dao.dart';
+import 'package:flag_quiz_app/models/flag_model.dart';
 import 'package:flag_quiz_app/views/result_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +13,34 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<FlagModel> questions = [];
+  List<FlagModel> wrongOptions = [];
+  late FlagModel trueQuestion;
+  final allOptions = HashSet<FlagModel>();
+  int questionCount = 0;
+  int trueCount = 0;
+  int wrongCount = 0;
+
+  String flagImageName = 'placeholder.png';
+  String buttonAText = '';
+  String buttonBText = '';
+  String buttonCText = '';
+  String buttonDText = '';
+
+  @override
+  void initState() {
+    bringTheQuestions();
+    super.initState();
+  }
+
+  Future<void> bringTheQuestions() async {
+    questions = await FlagsDao.bringTheFlags5();
+    
+    loadTheQuestions();
+  }
+
+  Future<void> loadTheQuestions() async {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +66,7 @@ class _QuizPageState extends State<QuizPage> {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) {
-                        return ResultPage(numberOfCorrect: 3,);
+                        return ResultPage(numberOfCorrect: 3);
                       },
                     ),
                   );
