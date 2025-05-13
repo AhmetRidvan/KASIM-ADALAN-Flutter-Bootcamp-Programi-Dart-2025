@@ -1,5 +1,6 @@
 import 'package:dictionary/views/detail_page.dart';
 import 'package:dictionary/word_model.dart';
+import 'package:dictionary/worddao.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,14 +15,14 @@ class _MainPageState extends State<MainPage> {
   String searchWord = '';
 
   Future<List<WordModel>> showAllWords() async {
-    final wordsList = <WordModel>[];
+    final wordsList = await WordDao.allWord();
 
-    final m1 = WordModel(word_id: 1, english: 'Dog', turkish: 'Köpek');
-    final m2 = WordModel(word_id: 1, english: 'Hi', turkish: 'Merhaba');
-    final m3 = WordModel(word_id: 1, english: 'Cat', turkish: 'Kedi');
-    final m4 = WordModel(word_id: 1, english: 'Box', turkish: 'Kutu');
+    return wordsList;
+  }
 
-    wordsList.addAll([m1, m2, m3, m4]);
+  Future<List<WordModel>> search(String searchWord) async {
+    final wordsList = await WordDao.search(searchWord);
+
     return wordsList;
   }
 
@@ -64,7 +65,7 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       body: FutureBuilder(
-        future: showAllWords(),
+        future: isSearching ? search(searchWord) : showAllWords(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final data = snapshot.data;
@@ -77,7 +78,7 @@ class _MainPageState extends State<MainPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return DetailPage(w1: word ,);
+                          return DetailPage(w1: word);
                         },
                       ),
                     );
