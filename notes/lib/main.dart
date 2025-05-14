@@ -5,7 +5,8 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget { //54:21
+class MyApp extends StatelessWidget {
+  //54:21
   const MyApp({super.key});
 
   @override
@@ -18,4 +19,4 @@ class MyApp extends StatelessWidget { //54:21
       home: Notes(),
     );
   }
-}
+}                                                                                                                                                            

@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-class VeritabaniYardimcisi{
+class DatabaseHelper{
 
   static final String veritabaniAdi = "notes.sqlite";
 
@@ -15,7 +15,7 @@ class VeritabaniYardimcisi{
       print("Veri tabanı zaten var.Kopyalamaya gerek yok");
     }else{
       //assetten veritabanının alınması
-      ByteData data = await rootBundle.load("veritabani/$veritabaniAdi");
+      ByteData data = await rootBundle.load("lib/database/$veritabaniAdi");
       //Veritabanının kopyalama için byte dönüşümü
       List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       //Veritabanının kopyalanması.

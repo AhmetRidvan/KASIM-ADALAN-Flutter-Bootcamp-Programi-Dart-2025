@@ -14,20 +14,15 @@ class _NotesRecordState extends State<NotesRecord> {
   final tGrade2 = TextEditingController();
 
   Future<void> save(String className, int grade1, int grade2) async {
-    print('$className $grade1 $grade2');
-    await Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) {
-          return Notes();
-        },
-      ),
-    );
+    print('$className $grade1 $grade2 kaydedildi');
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('Note record'),
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),

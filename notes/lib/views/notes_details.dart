@@ -23,24 +23,12 @@ class _NotesDetailsState extends State<NotesDetails> {
     int grade2,
   ) async {
     print('$note_id $className $grade1 $grade2 Updated');
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) {
-          return Notes();
-        },
-      ),
-    );
+    Navigator.of(context).pop();
   }
 
   Future<void> delete(int note_id) async {
     print('$note_id deleted');
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) {
-          return Notes();
-        },
-      ),
-    );
+    Navigator.of(context).pop();
   }
 
   @override
@@ -56,7 +44,7 @@ class _NotesDetailsState extends State<NotesDetails> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          TextButton(
+          TextButton( 
             onPressed: () {
               delete(widget.n1.note_id);
             },

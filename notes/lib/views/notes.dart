@@ -11,6 +11,10 @@ class Notes extends StatefulWidget {
 }
 
 class _NotesState extends State<Notes> {
+  Future<void> exit() async {
+    await exit();
+  }
+
   Future<List<Notemodel>> getAllNotes() async {
     final notesList = <Notemodel>[];
 
@@ -90,7 +94,7 @@ class _NotesState extends State<Notes> {
                 final note = data[index];
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pushReplacement(
+                    Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
                           return NotesDetails(n1: note);
