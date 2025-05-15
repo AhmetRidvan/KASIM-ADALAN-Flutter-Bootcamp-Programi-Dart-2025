@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:notes/dao.dart';
+import 'package:notes/database/DatabaseHelper.dart';
 import 'package:notes/model/noteModel.dart';
 import 'package:notes/views/notes_details.dart';
 import 'package:notes/views/notes_record.dart';
@@ -16,30 +18,7 @@ class _NotesState extends State<Notes> {
   }
 
   Future<List<Notemodel>> getAllNotes() async {
-    final notesList = <Notemodel>[];
-
-    final e1 = Notemodel(
-      note_id: 1,
-      lesson_name: 'History',
-      grade1: 33,
-      grade2: 100,
-    );
-
-    final e2 = Notemodel(
-      note_id: 2,
-      lesson_name: 'Math',
-      grade1: 50,
-      grade2: 80,
-    );
-
-    final e3 = Notemodel(
-      note_id: 4,
-      lesson_name: 'Geometry',
-      grade1: 90,
-      grade2: 65,
-    );
-
-    notesList.addAll([e1, e2, e3]);
+    var notesList = await Dao.bringItAll();
 
     return notesList;
   }
@@ -48,6 +27,7 @@ class _NotesState extends State<Notes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -62,7 +42,7 @@ class _NotesState extends State<Notes> {
                     double result = 0.0;
 
                     for (final x in data) {
-                      total = total + (x.grade1 + x.grade2 / 2);
+                      total = total + ((x.grade1 + x.grade2) / 2);
                     }
                     result = total / data.length;
 
@@ -75,7 +55,7 @@ class _NotesState extends State<Notes> {
                     return Text('Average : 0', style: TextStyle(fontSize: 16));
                   }
                 } else {
-                  return CircularProgressIndicator();
+                  return Center(child: CircularProgressIndicator());
                 }
               },
             ),
@@ -94,13 +74,17 @@ class _NotesState extends State<Notes> {
                 final note = data[index];
                 return GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return NotesDetails(n1: note);
-                        },
-                      ),
-                    );
+                    Navigator.of(context)
+                        .push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return NotesDetails(n1: note);
+                            },
+                          ),
+                        )
+                        .then((value) {
+                          setState(() {});
+                        });
                   },
                   child: SizedBox(
                     height: 60,
@@ -139,14 +123,18 @@ class _NotesState extends State<Notes> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return NotesRecord();
-              },
-            ),
-          );
+        onPressed: () async {
+          await Navigator.of(context)
+              .push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return NotesRecord();
+                  },
+                ),
+              )
+              .then((value) {
+                setState(() {});
+              });
         },
         child: Icon(Icons.add),
       ),

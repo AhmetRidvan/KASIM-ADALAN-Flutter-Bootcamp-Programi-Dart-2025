@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/dao.dart';
 import 'package:notes/views/notes.dart';
 
 class NotesRecord extends StatefulWidget {
@@ -14,7 +15,7 @@ class _NotesRecordState extends State<NotesRecord> {
   final tGrade2 = TextEditingController();
 
   Future<void> save(String className, int grade1, int grade2) async {
-    print('$className $grade1 $grade2 kaydedildi');
+    await Dao.addNote(className, grade1, grade2);
     Navigator.of(context).pop();
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/dao.dart';
 import 'package:notes/model/noteModel.dart';
 import 'package:notes/views/notes.dart';
 
@@ -22,12 +23,12 @@ class _NotesDetailsState extends State<NotesDetails> {
     int grade1,
     int grade2,
   ) async {
-    print('$note_id $className $grade1 $grade2 Updated');
+    await Dao.upgrade(note_id, className, grade1, grade2);
     Navigator.of(context).pop();
   }
 
   Future<void> delete(int note_id) async {
-    print('$note_id deleted');
+    await Dao.delete(note_id);
     Navigator.of(context).pop();
   }
 
@@ -44,7 +45,7 @@ class _NotesDetailsState extends State<NotesDetails> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          TextButton( 
+          TextButton(
             onPressed: () {
               delete(widget.n1.note_id);
             },

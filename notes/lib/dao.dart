@@ -2,7 +2,7 @@ import 'package:notes/database/DatabaseHelper.dart';
 import 'package:notes/model/noteModel.dart';
 
 class Dao {
-  Future<List<Notemodel>> bringItAll() async {
+  static Future<List<Notemodel>> bringItAll() async {
     final db = await DatabaseHelper.accessToDatabase();
 
     List<Map<String, dynamic>> listOfMaps = await db.rawQuery(
@@ -23,11 +23,10 @@ class Dao {
     });
   }
 
-  Future<void> addNote(int noteId, String lessonName, int no1, int not2) async {
+  static Future<void> addNote(String lessonName, int no1, int not2) async {
     final db = await DatabaseHelper.accessToDatabase();
 
     final map = <String, dynamic>{};
-    map['note_id'] = noteId;
     map['lesson_name'] = lessonName;
     map['grade1'] = no1;
     map['grade2'] = not2;
@@ -36,16 +35,25 @@ class Dao {
     db.insert('notes', map);
   }
 
-  Future<void> upgrade(int noteId, String lessonName, int no1, int not2) async {
+  static Future<void> upgrade(
+    int noteId,
+    String lessonName,
+    int no1,
+    int not2,
+  ) async {
     final db = await DatabaseHelper.accessToDatabase();
 
     final map = <String, dynamic>{};
-    map['note_id'] = noteId;
     map['lesson_name'] = lessonName;
     map['grade1'] = no1;
     map['grade2'] = not2;
     print(map);
 
-    db.update('notes', map); // 14:37
+    await db.update('notes', map, where: 'note_id = ?', whereArgs: [noteId]);
+  }
+
+  static Future<void> delete(int notId) async {
+    final d = await DatabaseHelper.accessToDatabase();
+    await d.delete('notes', where: 'note_id = ?', whereArgs: [notId]);
   }
 }
