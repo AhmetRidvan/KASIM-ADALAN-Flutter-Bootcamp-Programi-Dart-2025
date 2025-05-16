@@ -37,7 +37,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return MoviesPage();
+                          return MoviesPage(categoryModel: x,);
                         },
                       ),
                     );
