@@ -9,7 +9,7 @@ class Filmlerdao {
     List<Map<String, dynamic>> x = await d.rawQuery(
       "SELECT * FROM filmler,kategoriler,yonetmenler WHERE filmler.kategori_id = kategoriler.kategori_id and filmler.yonetmen_id = yonetmenler.yonetmen_id",
     );
-
+    print('Selam ${x}');
     return List.generate(x.length, (index) {
       var items = x[index];
 

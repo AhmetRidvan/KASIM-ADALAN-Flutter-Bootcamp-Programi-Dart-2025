@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movies/category_dao.dart';
+import 'package:movies/database_helper.dart';
 import 'package:movies/models/category_model.dart';
+import 'package:movies/movie_dao.dart';
 import 'package:movies/views/movies_page.dart';
 
 class CategoriesPage extends StatefulWidget {
@@ -21,6 +24,12 @@ class _CategoriesPageState extends State<CategoriesPage> {
   }
 
   @override
+  void initState() {
+    MovieDao.bringItAll(2);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Categories'), centerTitle: true),
@@ -37,7 +46,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return MoviesPage(categoryModel: x,);
+                          return MoviesPage(categoryModel: x);
                         },
                       ),
                     );
